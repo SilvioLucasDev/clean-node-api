@@ -1,10 +1,11 @@
 module.exports = {
-  roots: ['<rootDri>/src'],
+  roots: ['<rootDir>/src'],
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDri>/src/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-node',
   transform: {
     '.+\\.ts$': 'ts-jest'
-  }
+  },
+  coverageProvider: 'v8'
 }
