@@ -1,0 +1,10 @@
+{
+    // CONFIG DE COMPILAÇÃO
+    "compilerOptions": {
+        "outDir": "./dist",      // DEFINE AONDE VAI SER COMPILADO O CÓDIGO JS
+        "module": "commonjs",    // DEFINE COMO SERÁ GERADO O IMPORT E EXPORT EM JS
+        "target": "es2019",      // DEFINE A VERSÃO QUE SERÁ GERADO O CÓDIGO JS
+        "esModuleInterop": true, // N ENTENDI
+        "allowJs": true          // PEGA TODOS OS ARQUIVO DE CONFIG INCLUINDO OS .JSON
+    }
+}
