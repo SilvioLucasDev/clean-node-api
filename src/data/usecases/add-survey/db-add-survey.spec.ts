@@ -1,39 +1,49 @@
 
 import { type AddSurveyRepository, type AddSurveyModel } from './db-add-survey-protocols'
 import { DbAddSurvey } from './db-add-survey'
+import MockDate from 'mockdate'
+
+const makeFakeSurveyData = (): AddSurveyModel => ({
+  question: 'any_question',
+  answers: [{
+    image: 'any_image',
+    answer: 'any_answer'
+  }],
+  date: new Date()
+})
+
+interface SutTypes {
+  sut: DbAddSurvey
+  addSurveyRepositoryStub: AddSurveyRepository
+}
+
+const makeAddSurveyRepository = (): AddSurveyRepository => {
+  class AddSurveyRepositoryStub implements AddSurveyRepository {
+    async add (surveyData: AddSurveyModel): Promise<void> {
+      await new Promise(resolve => { resolve(null) })
+    }
+  }
+  return new AddSurveyRepositoryStub()
+}
+
+const makeSut = (): SutTypes => {
+  const addSurveyRepositoryStub = makeAddSurveyRepository()
+  const sut = new DbAddSurvey(addSurveyRepositoryStub)
+
+  return {
+    sut,
+    addSurveyRepositoryStub
+  }
+}
 
 describe('DbAddSurvey Usecase', () => {
-  const makeFakeSurveyData = (): AddSurveyModel => ({
-    question: 'any_question',
-    answers: [{
-      image: 'any_image',
-      answer: 'any_answer'
-    }]
+  beforeAll(() => {
+    MockDate.set(new Date())
   })
 
-  interface SutTypes {
-    sut: DbAddSurvey
-    addSurveyRepositoryStub: AddSurveyRepository
-  }
-
-  const makeAddSurveyRepository = (): AddSurveyRepository => {
-    class AddSurveyRepositoryStub implements AddSurveyRepository {
-      async add (surveyData: AddSurveyModel): Promise<void> {
-        await new Promise(resolve => { resolve(null) })
-      }
-    }
-    return new AddSurveyRepositoryStub()
-  }
-
-  const makeSut = (): SutTypes => {
-    const addSurveyRepositoryStub = makeAddSurveyRepository()
-    const sut = new DbAddSurvey(addSurveyRepositoryStub)
-
-    return {
-      sut,
-      addSurveyRepositoryStub
-    }
-  }
+  afterAll(() => {
+    MockDate.reset()
+  })
 
   test('Should call AddSurveyRepository with correct values', async () => {
     const { sut, addSurveyRepositoryStub } = makeSut()
