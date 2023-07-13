@@ -3,8 +3,8 @@ import { type SaveSurveyResultModel, type SurveyResultModel, type SaveSurveyResu
 
 export class SurveyResultMongoRepository implements SaveSurveyResultRepository {
   async save (data: SaveSurveyResultModel): Promise<SurveyResultModel> {
-    const surveyCollection = await MongoHelper.getCollection('surveyResult')
-    const surveyResult = await surveyCollection.findOneAndUpdate({
+    const surveyResultCollection = await MongoHelper.getCollection('surveyResults')
+    const surveyResult = await surveyResultCollection.findOneAndUpdate({
       surveyId: data.surveyId,
       accountId: data.accountId
     }, {
