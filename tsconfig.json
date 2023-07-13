@@ -5,13 +5,14 @@
         "module": "commonjs", // DEFINE COMO SERÁ GERADO O IMPORT E EXPORT EM JS
         "target": "es2019", // DEFINE A VERSÃO QUE SERÁ GERADO O CÓDIGO JS
         "esModuleInterop": true, // N ENTENDI
-        "rootDir": "src"
+        "rootDir": "src",
+        "baseUrl": "src",
+        "paths": {
+            "@/*": ["*"]
+        }
     },
     "include": [
         "src"
     ],
-    "exclude": [
-        "**/*.spec.ts",
-        "**/*.test.ts"
-    ]
+    "exclude": []
 }
