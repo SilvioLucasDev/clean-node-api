@@ -3,6 +3,7 @@ import { MongoHelper } from '../helpers/mongo-helper'
 import { type Collection } from 'mongodb'
 import { type SurveyModel } from '@/domain/models/survey'
 import { type AccountModel } from '@/domain/models/account'
+import { mockAddAccountParams } from '@/domain/test'
 
 let surveyResultCollection: Collection
 let surveyCollection: Collection
@@ -29,11 +30,7 @@ const makeSurvey = async (): Promise<SurveyModel> => {
 }
 
 const makeAccount = async (): Promise<AccountModel> => {
-  const account = await accountCollection.insertOne({
-    name: 'any_name',
-    email: 'any_email@mail.com',
-    password: '12345'
-  })
+  const account = await accountCollection.insertOne(mockAddAccountParams())
 
   const accountCreated: any = await accountCollection.findOne({ _id: account.insertedId })
   return accountCreated
