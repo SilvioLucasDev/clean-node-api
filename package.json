@@ -1,8 +1,11 @@
 {
   "name": "clean-node-api",
-  "version": "2.0.3",
-  "description": "",
+  "version": "2.1.0",
+  "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
   "main": "index.js",
+  "author": "Silvio Lucas - SLDS",
+  "license": "ISC",
+  "repository": "https://github.com/SilvioLucasDev/clean-node-api",
   "scripts": {
     "start": "nodemon -L --watch ./dist ./dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
@@ -17,9 +20,6 @@
     "test:ci": "npm test -- --coverage",
     "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@shelf/jest-mongodb": "^4.1.7",
     "@types/bcrypt": "^5.0.0",
