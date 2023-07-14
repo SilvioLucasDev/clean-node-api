@@ -1,3 +1,4 @@
+import { promises } from 'dns'
 import { DbAuthentication } from './db-authentication'
 import {
   type HashComparer,
@@ -74,7 +75,7 @@ describe('DbAuthentication UseCase', () => {
 
   test('Should returns null if HashComparer returns false', async () => {
     const { sut, hashComparerStub } = makeSut()
-    jest.spyOn(hashComparerStub, 'compare').mockReturnValueOnce(new Promise((resolve) => { resolve(false) }))
+    jest.spyOn(hashComparerStub, 'compare').mockReturnValueOnce(Promise.resolve(false))
     const accessToken = await sut.auth(mockAuthenticationParams())
     expect(accessToken).toBeNull()
   })
