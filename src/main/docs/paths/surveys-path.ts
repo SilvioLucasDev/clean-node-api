@@ -4,7 +4,7 @@ export const surveyPath = {
       apiKeyAuth: []
     }],
     tags: ['Enquete'],
-    summary: 'Api para listar todas as enquetes',
+    summary: 'API para listar todas as enquetes',
     responses: {
       200: {
         description: 'Sucesso',
