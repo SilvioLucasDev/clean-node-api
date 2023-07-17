@@ -53,17 +53,20 @@ describe('SignUp Controller', () => {
     })
   })
 
-  test('Should return 404 if AddAccount returns null', async () => {
+  test('Should return 403 if AddAccount returns null', async () => {
     const { sut, addAccountStub } = makeSut()
     jest.spyOn(addAccountStub, 'add').mockReturnValueOnce(Promise.resolve(null))
     const httpResponse = await sut.handle(mockRequest())
     expect(httpResponse).toEqual(forbidden(new EmailInUseError()))
   })
 
-  test('Should return 200 if invalid data is provided', async () => {
+  test('Should return 200 if valid data is provided', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(mockRequest())
-    expect(httpResponse).toEqual(ok({ accessToken: 'any_token' }))
+    expect(httpResponse).toEqual(ok({
+      accessToken: 'any_token',
+      name: 'any_name'
+    }))
   })
 
   test('Should call Validation with correct values', async () => {
