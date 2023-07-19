@@ -4,7 +4,7 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/**/index.ts',
-    '!<rootDir>/src/**/main.ts',
+    '!<rootDir>/src/**/server.ts',
     '!<rootDir>/src/**/*protocols.ts',
     '!<rootDir>/src/**/protocols/**',
     '!<rootDir>/src/main/config/**',
